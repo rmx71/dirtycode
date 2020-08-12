@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Repository</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet"></link>
+</head>
+<body style="font-family: 'Verdana'">
+	<script type="text/javascript">
+		function clearSearch() {
+			window.location = "/";
+		}
+	</script>
+	<div align="center">
+		<h1 th:text="${title}"></h1>
+	</div>
+	<div align="right">
+		<form th:action="@{/}">
+			<input type="button" value="Clear" id="btnClear"
+				onclick="clearSearch()" />
+		</form>
+	</div>
+	<div align="center">
+		<div align="center">
+			<table style="width: 30%; display: inline-block; float: left;">
+				<thead>
+					<tr>
+						<th style="text-align: center">Contributors</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="contributor : ${contributors}">
+						<td style="text-align: center" th:text="${contributor}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div>
+			<table style="width: 30%; display: inline-block; float: left;">
+				<thead>
+					<tr>
+						<th style="text-align: center">Contributors</th>
+						<th style="text-align: center">Last 100 Commits Contributions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="impact : ${impactList}">
+						<td style="text-align: center" th:text="${impact.key}"></td>
+						<td style="text-align: center" th:text="${impact.value}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div>
+			<table style="width: 30%; display: inline-block; float: left;">
+				<thead>
+					<tr>
+						<th>Committer</th>
+						<th>Date of Commit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="details : ${commitDetailsMap}">
+						<td th:text="${details.value}">Committer</td>
+						<td th:text="${details.key}">Date of Commit</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

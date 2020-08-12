@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>WF Demo Project</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet"></link>
+</head>
+<body>
+	<script type="text/javascript">
+		function clearSearch() {
+			window.location = "/";
+		}
+	</script>
+	<div align="center">
+
+		<h1>GitHub Public Repositories</h1>
+
+		<br />
+		<br />
+		<form th:action="@{/}">
+			<input type="text" name="keyword" id="keyword" size="50"
+				th:value="${keyword}" th:required="required" /> &nbsp; <input
+				type="submit" value="Search" /> &nbsp; <input type="button"
+				value="Clear" id="btnClear" onclick="clearSearch()" />
+		</form>
+		<br />
+		<br />
+
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Full Name</th>
+					<th>Owner</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="repo : ${repoList}">
+					<td th:text="${repo.name}">Name</td>
+					<td th:text="${repo.full_name}">Full Name</td>
+					<td th:text="${repo.owner.login}">Owner</td>
+					<td><a th:href="@{'/view/' + ${repo.id}}">View</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

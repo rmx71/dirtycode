@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/main.css" rel="stylesheet"></link>
+<head>
+<style>
+table td {
+	vertical-align: top;
+	border: solid 1px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<h1>Error Page</h1>
+	<table>
+		<tr>
+			<td>Date</td>
+			<td th:text="${timestamp}" />
+		</tr>
+		<tr>
+			<td>Path</td>
+			<td th:text="${path}" />
+		</tr>
+		<tr>
+			<td>Error</td>
+			<td th:text="${error}" />
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td th:text="${status}" />
+		</tr>
+		<tr>
+			<td>Message</td>
+			<td th:text="${message}" />
+		</tr>
+		<tr>
+			<td>Exception</td>
+			<td th:text="${exception}" />
+		</tr>
+		<tr>
+			<td>Trace</td>
+			<td><pre th:text="${trace}" /></td>
+		</tr>
+	</table>
+
+	<form th:action="@{/}">
+		<input type="button" value="Home" id="btnClear"
+			onclick="clearSearch()" />
+	</form>
+
+	<script type="text/javascript">
+		function clearSearch() {
+			window.location = "/";
+		}
+	</script>
+</body>
+</html>
